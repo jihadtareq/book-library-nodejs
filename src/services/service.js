@@ -1,0 +1,82 @@
+class Service {
+    constructor (repository) {
+      this.repository = repository
+      this.model = 'Modelo'
+    }
+  
+    async create (body) {
+      const data = await this.repository.create(body)
+
+    //   process.exit()
+  
+      if (!data) {
+        throw new Error('Not created')
+      }
+  
+      return data
+    }
+  
+    async findAll (options = {}) {
+      const data = await this.repository.findAll(options)
+  
+      if (!data) {
+        throw new Error('Internal server error')
+      }
+  
+      return data
+    }
+  
+    async findOne (options) {
+        // console.log(options);
+        // process.exit();
+      const data = await this.repository.findOne(options)
+  
+      if (!data) {
+        throw new Error('Not found')
+      }
+  
+      return data
+    }
+  
+    async findByPk (id) {
+      const data = await this.repository.findByPk(id)
+  
+      if (!data) {
+        throw new Error('Not found')
+      }
+  
+      return data
+    }
+  
+    async update (id, body) {
+      const data = await this.repository.findByPk(id)
+  
+      if (!data) {
+        throw new Error('Not found')
+      }
+  
+      const payload = {
+        ...data.dataValues,
+        ...body
+      }
+  
+      await this.repository.update(id, payload)
+  
+      return payload
+    }
+  
+    async remove (id) {
+      const data = await this.repository.findByPk(id)
+  
+      if (!data) {
+        throw new Error('Not found')
+      }
+  
+      await this.repository.remove(id)
+  
+      return null
+    }
+  }
+  
+  module.exports = Service
+  
