@@ -42,11 +42,6 @@ or
 ```
 $ npm start
 ```
-
-#### Step 6
-
-[Test the installation here](http://localhost:3000)
-
 <blockquote>
 <span>
 💡
