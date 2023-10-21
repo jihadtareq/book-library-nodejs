@@ -1,6 +1,7 @@
 const http = require('../helpers/http')
 const {OK,INTERNAL_SERVER_ERROR, NOT_FOUND,NO_CONTENT,BAD_REQUEST} = require('../helpers/constants')
 const BorroweringProcessService = require('../services/borrowingProcessService')
+const BookService = require('../services/bookService')
 const BorrowingProcessController = module.exports
 
 BorrowingProcessController.getAll = async (req, res) => {
@@ -17,7 +18,8 @@ BorrowingProcessController.getAll = async (req, res) => {
 BorrowingProcessController.borrowBook = async (req,res) =>{
     try {
         const checkoutBook = await new BorroweringProcessService().create(req.body)
-        return res.status(OK).json(http.response(checkoutBook,OK,`Book has been checked out by ${checkoutBook.userName}`))
+        await new BookService().updateBookQuantity(checkoutBook.bookId,'-')
+        return res.status(OK).json(http.response(checkoutBook,OK,'Book has been checked out'))
         
     } catch (error) {
         console.error(error)
@@ -57,8 +59,9 @@ BorrowingProcessController.delete = async (req, res) => {
 
 BorrowingProcessController.returnBook = async (req,res) =>{
     try {
-        const checkoutBook = await new BorroweringProcessService().returnBook(req.params.borrowProcessId)
-        return res.status(OK).json(http.response({},OK,`Book has been returned`))
+        const returnBook = await new BorroweringProcessService().returnBook(req.params.borrowProcessId)
+        await new BookService().updateBookQuantity(returnBook.books.id,'+')
+        return res.status(OK).json(http.response(returnBook,OK,`Book has been returned`))
     } catch (error) {
         return res.status(NOT_FOUND).json(http.response(error.message, NOT_FOUND, 'Error'))
     }
