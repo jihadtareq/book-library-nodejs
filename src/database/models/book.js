@@ -5,6 +5,11 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class book extends Model {
+
+    static associate (models) {
+      // define association here
+      this.belongsToMany(models.borrower, { through: 'borrowing_processes', foreignKey: 'borrowerId'});
+    }
   }
   
   book.init({

@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate (models) {
       // define association here
+      this.belongsToMany(models.book, { through: 'borrowing_processes', foreignKey: 'bookId'});
     }
   }
   borrower.init({

@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       this.belongsTo(models.book, { as: 'books', foreignKey: 'bookId'});
       this.belongsTo(models.borrower, { as: 'borrowers', foreignKey: 'borrowerId'});
+      // this.belongsToMany(models.book, { through: 'borrowing_processes', foreignKey: 'bookId'});
+      // this.belongsToMany(models.borrower, { through: 'borrowing_processes', foreignKey: 'borrowerId'});
     }
   }
   borrowingProcess.init({
