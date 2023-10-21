@@ -8,5 +8,6 @@ router.get("/:borrowProcessId", borrowProcessController.getBorrowProcessing);
 router.post("/", borrowProcessController.borrowBook);
 router.put("/:borrowProcessId", borrowProcessController.update);
 router.delete("/:borrowProcessId", borrowProcessController.delete); 
+router.patch("/:borrowProcessId/return-book", borrowProcessController.returnBook); 
 
 module.exports = router

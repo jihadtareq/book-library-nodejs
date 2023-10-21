@@ -53,4 +53,14 @@ BorrowingProcessController.delete = async (req, res) => {
       console.error(error)
       return res.status(INTERNAL_SERVER_ERROR).json(http.response(error, INTERNAL_SERVER_ERROR, 'Borrowing process not deleted'))
     }
-  }
+}
+
+BorrowingProcessController.returnBook = async (req,res) =>{
+    try {
+        const checkoutBook = await new BorroweringProcessService().returnBook(req.params.borrowProcessId)
+        return res.status(OK).json(http.response({},OK,`Book has been returned`))
+    } catch (error) {
+        return res.status(NOT_FOUND).json(http.response(error.message, NOT_FOUND, 'Error'))
+    }
+}
+
