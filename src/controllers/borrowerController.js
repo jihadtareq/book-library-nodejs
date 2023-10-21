@@ -25,7 +25,7 @@ BorrowerController.getBorrower = async (req, res) => {
 }
 BorrowerController.getBorrowerByFilter = async (req, res) => {
     try {
-      const borrower = await new BorrowerService().findOne(req.query)
+      const borrower = await new BorrowerService().findOne({where:req.query})
       return res.status(OK).json(http.response(borrower, OK, 'borrower found'))
     } catch (error) {
       console.error(error)
