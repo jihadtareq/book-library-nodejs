@@ -32,6 +32,16 @@ BookController.getBookByFilter = async (req, res) => {
       return res.status(NOT_FOUND).json(http.response(error, NOT_FOUND, 'Book not found'))
     }
 }
+
+BookController.getBooksQuery = async (req, res) => {
+  try {
+    const book = await new BookService().searchQuery(req.query)
+    return res.status(OK).json(http.response(book, OK, 'Book found'))
+  } catch (error) {
+    console.error(error)
+    return res.status(NOT_FOUND).json(http.response(error, NOT_FOUND, 'Book not found'))
+  }
+}
 BookController.create = async (req, res) => {
   try {
     const book = await new BookService().create(req.body)

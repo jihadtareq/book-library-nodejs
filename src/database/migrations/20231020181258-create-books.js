@@ -16,7 +16,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       isbn: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true,
       },
       shelf_location: {
         type: Sequelize.STRING

@@ -6,6 +6,16 @@ class BookService extends Service {
     super(new BookRepository())
     this.model = 'Book'
   }
+
+  async searchQuery(params) {
+    const data = await this.repository.searchQuery(params)
+
+    if (!data) {
+      throw new Error('Not found')
+    }
+    
+    return data
+  }
 }
 
 module.exports = BookService
