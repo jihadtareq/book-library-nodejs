@@ -68,9 +68,8 @@ class Service {
         throw new Error('Not found')
       }
   
-      await this.repository.remove(id)
+      return await this.repository.remove(id)
   
-      return null
     }
   }
   

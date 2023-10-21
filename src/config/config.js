@@ -12,6 +12,8 @@ module.exports = {
     name: process.env.DB_NAME || 'library_management',
     user: process.env.DB_USER || 'root',
     pass: process.env.DB_PASS || 'root1234',
+    
+
     connection_name: process.env.DB_CONNECTION_NAME || ''
   },
   jwt: {

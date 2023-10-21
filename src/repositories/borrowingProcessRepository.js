@@ -1,11 +1,11 @@
 const Repository = require('./baseRepositry')
 
-const BorrowerProcess = require('../database/models').borrowingProcess
+const BorrowingProcess = require('../database/models').borrowingProcess
 
 class BorrowingProcessRepository extends Repository {
   constructor () {
     super()
-    this.model = BorrowerProcess
+    this.model = BorrowingProcess
   }
 }
 

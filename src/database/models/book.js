@@ -22,36 +22,43 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    isbn: {
+    ISBN: {
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false
+      allowNull: false,
+      field:'isbn'
 
     },
-    shelf_location: {
+    shelfLocation: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      field:'shelf_location'
     },
     quantity: {
       type: DataTypes.INTEGER
     },
-    is_available: {
+    isAvailable: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
-    },
-    created_at: {
       allowNull: false,
-      type: DataTypes.DATE
+      defaultValue:1,
+      field:'is_available'
     },
-    updated_at: {
+    createdAt: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      field:'created_at'
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field:'updated_at'
+
     }
   }, {
     sequelize,
     modelName: 'book',
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   });
   return book;
 };

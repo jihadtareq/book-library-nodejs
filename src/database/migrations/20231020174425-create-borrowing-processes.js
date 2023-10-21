@@ -12,14 +12,14 @@ module.exports = {
       book_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: Book,
+          model: 'books',
           key: 'id'
         }
       },
       borrower_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: Borrower,
+          model: 'borrowers',
           key: 'id'
         }
       },
@@ -35,11 +35,11 @@ module.exports = {
       is_over_due: {
         type: Sequelize.BOOLEAN
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

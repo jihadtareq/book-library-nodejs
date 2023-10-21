@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 const {
   Model
-} = require('sequelize');
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class borrowingProcess extends Model {
     /**
@@ -9,39 +9,62 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+    static associate (models) {
       // define association here
       this.belongsTo(models.book, { as: 'books', foreignKey: 'book_id'});
       this.belongsTo(models.borrower, { as: 'borrowers', foreignKey: 'borrower_id'});
-
     }
   }
   borrowingProcess.init({
-    id:{
+    id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.BIGINT,
     },
-    book_id: DataTypes.BIGINT,
-    borrower_id: DataTypes.BIGINT,
-    checkout_date: DataTypes.DATE,
-    due_date: DataTypes.DATE,
-    returned_date: DataTypes.DATE,
-    is_over_due: DataTypes.DATE,
-    created_at: {
-      allowNull: false,
-      type: DataTypes.DATE
+    bookId: {
+      type: DataTypes.INTEGER,
+      field: 'book_id'
+
     },
-    updated_at: {
+    borrowerId:{
+      type: DataTypes.INTEGER,
+      field: 'borrower_id'
+    },
+    checkoutDate: {
+      type:DataTypes.DATE,
+      field:'checkout_date'
+    },
+    dueDate: {
+      type:DataTypes.DATE,
+      field:'due_date'
+    },
+    returnedDate: {
+      allowNull: true,
+      type:DataTypes.DATE,
+      field:'returned_date'
+    },
+    isOverDue: {
+      allowNull: true,
+      type:DataTypes.BOOLEAN,
+      defaultValue:0,
+      field:'is_over_due'
+    },
+    createdAt: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      field:'created_at'
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+      field:'updated_at'
     }
-  }, {
+  },{
     sequelize,
     modelName: 'borrowingProcess',
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  });
-  return borrowingProcess;
-};
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  })
+  return borrowingProcess
+}

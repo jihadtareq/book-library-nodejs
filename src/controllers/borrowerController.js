@@ -53,7 +53,7 @@ BorrowerController.update = async (req, res) => {
 BorrowerController.delete = async (req, res) => {
   try {
     const borrower = await new BorrowerService().remove(req.params.borrowerId)
-    return res.status(NO_CONTENT).json(http.response(borrower, OK, 'Borrower deleted'))
+    return res.status(OK).json(http.response(borrower, OK, 'Borrower deleted'))
   } catch (error) {
     console.error(error)
     return res.status(INTERNAL_SERVER_ERROR).json(http.response(error, INTERNAL_SERVER_ERROR, 'Borrower not deleted'))

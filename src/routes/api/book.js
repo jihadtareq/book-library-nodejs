@@ -12,5 +12,4 @@ const router = express.Router();
     router.delete("/:bookId", booksController.delete);
     // router.delete("/delete-all", booksController.deleteAll);
  
-
 module.exports = router

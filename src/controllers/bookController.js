@@ -63,7 +63,7 @@ BookController.update = async (req, res) => {
 BookController.delete = async (req, res) => {
   try {
     const book = await new BookService().remove(req.params.bookId)
-    return res.status(NO_CONTENT).json(http.response(book, OK, 'Book deleted'))
+    return res.status(OK).json(http.response(book, OK, 'Book deleted'))
   } catch (error) {
     console.error(error)
     return res.status(INTERNAL_SERVER_ERROR).json(http.response(error, INTERNAL_SERVER_ERROR, 'Book not deleted'))

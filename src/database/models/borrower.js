@@ -32,19 +32,21 @@ module.exports = (sequelize, DataTypes) => {
     phone: {
         type: DataTypes.STRING
       },
-    created_at: {
+    createdAt: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      field:'created_at'
     },
-    updated_at: {
+    updatedAt: {
       allowNull: false,
-      type: DataTypes.DATE
+      type: DataTypes.DATE,
+      field:'updated_at'
     }
   },{
     sequelize,
     modelName: 'borrower',
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   })
   return borrower
 }
