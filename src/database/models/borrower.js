@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   borrower.init({
     id: {
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
       type: DataTypes.BIGINT,
-      defaultValue: DataTypes.UUIDV4
     },
     name: DataTypes.STRING,
     email: {

@@ -6,9 +6,6 @@ class Service {
   
     async create (body) {
       const data = await this.repository.create(body)
-
-    //   process.exit()
-  
       if (!data) {
         throw new Error('Not created')
       }
@@ -27,8 +24,7 @@ class Service {
     }
   
     async findOne (options) {
-        // console.log(options);
-        // process.exit();
+
       const data = await this.repository.findOne(options)
   
       if (!data) {

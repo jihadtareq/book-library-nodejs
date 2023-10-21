@@ -17,6 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   borrowingProcess.init({
+    id:{
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.BIGINT,
+    },
     book_id: DataTypes.BIGINT,
     borrower_id: DataTypes.BIGINT,
     checkout_date: DataTypes.DATE,
