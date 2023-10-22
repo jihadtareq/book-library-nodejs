@@ -6,12 +6,11 @@ const now  =  new Date();
 
 
 //run every minute
-cron.schedule('* * * * *', async () => {
+cron.schedule('*/10 * * * * *', async () => {
     try {
-     const processes = await sequelize.query('SELECT * FROM borrowing_processes WHERE is_over_due = false', { type: QueryTypes.SELECT });
-
+     const processes = await sequelize.query('SELECT * FROM borrowing_processes WHERE is_over_due = false AND returned_date IS NULL', { type: QueryTypes.SELECT });
       for (const process of processes) {
-        if(date.format(now,'YYYY-MM-DD HH:mm:ss') > date.format(process.due_date,'YYYY-MM-DD HH:mm:ss')){
+        if((date.format(now,'YYYY-MM-DD HH:mm:ss') > date.format(process.due_date,'YYYY-MM-DD HH:mm:ss')) && !process.returned_date){
            await sequelize.query(`UPDATE borrowing_processes SET is_over_due=true WHERE id= ${process.id}`)
         }
       }
