@@ -6,7 +6,7 @@ const now  =  new Date();
 
 
 //run every minute
-cron.schedule('*/10 * * * * *', async () => {
+cron.schedule('* * * * *', async () => {
     try {
      const processes = await sequelize.query('SELECT * FROM borrowing_processes WHERE is_over_due = false AND returned_date IS NULL', { type: QueryTypes.SELECT });
       for (const process of processes) {
