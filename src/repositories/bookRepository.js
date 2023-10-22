@@ -10,18 +10,7 @@ class BookRepository extends Repository {
   }
 
   //CUSTOME SEARCH
-  async searchQuery (params) {
-    console.log(params)
-
-    var customeQuery = '';
-    const lastKey = Object.keys(params).pop();
-    for (const [key, value] of Object.entries(params)) {
-       var operator = ''
-       if(key != lastKey){
-        operator = ' AND '
-       }
-       customeQuery += `${key} LIKE '%${value}%'${operator}`
-    }      
+  async searchQuery (customeQuery) { 
     return await sequelize.query(`SELECT * FROM books WHERE ${customeQuery}`, { type: QueryTypes.SELECT });
   }
 

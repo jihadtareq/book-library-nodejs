@@ -8,7 +8,16 @@ class BookService extends Service {
   }
 
   async searchQuery(params) {
-    const data = await this.repository.searchQuery(params)
+    var customeQuery = '';
+    const lastKey = Object.keys(params).pop();
+    for (const [key, value] of Object.entries(params)) {
+       var operator = ''
+       if(key != lastKey){
+        operator = ' AND '
+       }
+       customeQuery += `${key} LIKE '%${value}%'${operator}`
+    }     
+    const data = await this.repository.searchQuery(customeQuery)
 
     if (!data) {
       throw new Error('Not found')
