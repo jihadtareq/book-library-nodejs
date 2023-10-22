@@ -1,6 +1,6 @@
 const app = require('./src')
 const { host, port} = require('./src/config/config')
-
+require('./cron')
 app.use((req, res, next) => {
     res.statusCode = 200;
     res.setHeader('Access-Control-Allow-Origin', '*');

@@ -32,7 +32,7 @@ $ npm run db:migrate
 
 #### Step 5
 
-To run the server, you must execute the following command
+To run the server with cron job, you must execute the following command
 
 ```
 $ npm run dev
@@ -42,6 +42,11 @@ or
 ```
 $ npm start
 ```
+To run cron job, you must execute the following command
+```
+$ npm run job
+```
+
 <blockquote>
 <span>
 💡
